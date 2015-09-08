@@ -1,7 +1,7 @@
 <?php
 
 // Include all credentials, make sure this is pointing at the right place
-include('../credentials.php');
+@include_once '../../../credentials.php';
 
 // Connect to mysql via pdo and leave the $pdo for further use
 try {

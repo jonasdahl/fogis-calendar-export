@@ -4,7 +4,7 @@ require_once 'database.php';
 
 // If there is no token, send away
 if (!isset($_GET['token'])) {
-	header('location:../');
+	header('location:index.php');
 	exit;
 }
 
@@ -18,6 +18,6 @@ $statement->execute(array(
 
 if ($statement->rowCount() == 0) {
 	// It doesn't exist...
-    header('location:../');
+    header('location:index.php');
     exit;
 }

@@ -133,7 +133,13 @@ class Request {
 	 * Gets parameters stored on the login page that are necessary for login post request.
 	 */
 	private function setParams() {
-		$html = file_get_contents($this->loginGetUrl);
+		$arrContextOptions = array(
+		    "ssl" => array(
+		        "verify_peer" => false,
+		        "verify_peer_name" => false,
+		    ),
+		); 
+		$html = file_get_contents($this->loginGetUrl, false, stream_context_create($arrContextOptions));
 		preg_match('/input.*name="__VIEWSTATE".*value="(.*)"/', $html, $vs);
 		preg_match('/input.*name="__VIEWSTATEGENERATOR".*value="(.*)"/', $html, $vsg);
 		preg_match('/input.*name="__EVENTVALIDATION".*value="(.*)"/', $html, $ev);

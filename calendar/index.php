@@ -1,5 +1,6 @@
 <?php
 
+require_once '../../../../credentials.php';
 require '../includes/database.php';
 require '../classes/Request.php';
 require '../classes/CalendarEvent.php';

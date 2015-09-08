@@ -23,7 +23,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	$statement = $pdo->prepare("SELECT * FROM calendars WHERE username = :username AND password = :password");
 	$statement->execute(array(
 	    "username" => $_POST['username'],
-	    "password" => openssl_encrypt($_POST['password'], $method, $key),
+	    "password" => @openssl_encrypt($_POST['password'], $method, $key),
 	));
 
 	// If there already exists an entry in the database, its not necessary to create a new
@@ -41,9 +41,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	$statement->execute(array(
 		"token" => $hash,
 	    "username" => $_POST['username'],
-	    "password" => openssl_encrypt($_POST['password'], $method, $key),
+	    "password" => @openssl_encrypt($_POST['password'], $method, $key),
 	));
-
+	
 	// Send user to link page after insert
 	header('location:link.php?token=' . $hash);
 	exit;
